@@ -25,7 +25,7 @@ contract highway is IRapiDrive, Ownable, Pausable {
     }
 
     function pause_contract() public {
-        paused() ? _pause() : _unpause();
+        paused() ? _unpause() : _pause() ;
     }
 
     function create_ramp(string memory name, string memory location, uint price) public onlyOwner whenNotPaused {
