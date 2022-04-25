@@ -1,4 +1,5 @@
 const { assert } = require("chai");
+const { parse } = require("dotenv");
 
 const rapidrive = artifacts.require('highway')
 const Token = artifacts.require("RPDToken");
@@ -10,14 +11,30 @@ contract("HIGHWAY FUNCTIONAL TESTS", async (accounts) => {
         const rapidriveInstance = await rapidrive.new(token.address)
 
 
-        await rapidriveInstance.create_ramp('campana', 'asd', 1)
-        let r = await rapidriveInstance.ramps('campana');
-        assert.equal(r['0'], 'campana');
+        await rapidriveInstance.create_ramp('campana', 'asd')
+        let on_ramp = await rapidriveInstance.ramps('campana');
+        assert.equal(on_ramp['0'], 'campana');
         
+        await rapidriveInstance.create_ramp('ruko', 'fsd')
+        let off_ramp = await rapidriveInstance.ramps('ruko');
+        assert.equal(off_ramp['0'], 'ruko');   
+//     function create_route(string memory name, string memory entry, string memory exit, uint price) public onlyOwner whenNotPaused {
+
+        await rapidriveInstance.create_route('Route 1', 'campana', 'ruko', 5);
+        let route = await rapidriveInstance.routes('Route 1');
+        assert.equal(route['2'].toString(), '5');      
+
+        // creating a route with same name as before, it should trigger an error
+        try {
+            await rapidriveInstance.create_route('Route 95', 'campana', 'ruko', 3);
+        } catch (e) {
+            console.log(e.data.stack)
+        }
+        // pausing contract and see if we can execute functions
         await rapidriveInstance.pause_contract()
 
         try {
-            await rapidriveInstance.create_ramp('zarate', 'asd', 1)
+            await rapidriveInstance.create_ramp('zarate', 'asd')
         } catch (e) {
             console.log(e.data.stack)
         }
@@ -27,7 +44,7 @@ contract("HIGHWAY FUNCTIONAL TESTS", async (accounts) => {
         try {
             // trying to create ramp with same name as before
             // it should trigger an error of existing ramp
-            await rapidriveInstance.create_ramp('campana', 'asd', 1)
+            await rapidriveInstance.create_ramp('campana', 'asd')
         } catch (e) {
             console.log(e.data.stack)
         }
@@ -35,7 +52,7 @@ contract("HIGHWAY FUNCTIONAL TESTS", async (accounts) => {
         await token.buy_tokens({from:accounts[2] ,value: web3.utils.toWei("24", "ether" )})
         //trying using ramp without allowed contract to spend RPD TOKEN
         try {
-            await rapidriveInstance.use_ramp('campana', {from:accounts[2]})
+            await rapidriveInstance.use_route('Route 1', {from:accounts[2]})
         } catch (e) {
             console.log(e.data.stack)
         }
@@ -44,14 +61,17 @@ contract("HIGHWAY FUNCTIONAL TESTS", async (accounts) => {
         await token.approve(rapidriveInstance.address, web3.utils.toWei("10", "ether" ), {from:accounts[2]})
         
         try {
-            await rapidriveInstance.use_ramp('campana', {from:accounts[2]})
+            await rapidriveInstance.use_route('Route 1', {from:accounts[2]})
         } catch (e) {
             console.log(e.data.stack)
         }
 
+        await rapidriveInstance.create_ramp('escobar', 'fsd')
+        await rapidriveInstance.create_route('Route 23', 'ruko', 'escobar', 6);
+
         // trying to use another ramp meanwhile the user already is on some of it
         try {
-            await rapidriveInstance.use_ramp('zarate', {from:accounts[2]})
+            await rapidriveInstance.use_route('Route 23', {from:accounts[2]})
         } catch (e) {
             console.log(e.data.stack)
         }
@@ -60,14 +80,14 @@ contract("HIGHWAY FUNCTIONAL TESTS", async (accounts) => {
 
         // paying the ramp used
         try {
-            await rapidriveInstance.pay_ramp({from:accounts[2]})
+            await rapidriveInstance.pay_route({from:accounts[2]})
         } catch (e) {
             console.log(e)
         }
 
-        let amount_after_pay = parseInt(await token.balanceOf(accounts[2])) + 1
+        let amount_after_pay = parseInt(await token.balanceOf(accounts[2]))
 
-        assert.equal((amount_after_pay).toString(), (amount_before_pay).toString())
+        assert.equal(parseInt((amount_after_pay)) < parseInt(amount_before_pay), true)
 
     })
 
@@ -76,46 +96,41 @@ contract("HIGHWAY FUNCTIONAL TESTS", async (accounts) => {
         const token = await Token.new()
         const rapidriveInstance = await rapidrive.new(token.address)
 
-        await rapidriveInstance.create_ramp('rusot', 'asd', 4)
+        await rapidriveInstance.create_ramp('rusot', 'asd')
         let r = await rapidriveInstance.ramps('rusot');
         assert.equal(r['0'], 'rusot');
         
         try {
-            await rapidriveInstance.create_ramp('rusot', 'asd', 1)
+            await rapidriveInstance.create_ramp('rusot', 'asd')
         } catch (e) {
             console.log(e.data.stack)
         }
 
-        await rapidriveInstance.create_ramp('campana', 'asd', 1)
+        await rapidriveInstance.create_ramp('campana', 'asd')
+        await rapidriveInstance.create_route('Route 23', 'campana', 'rusot', 6);
 
         await token.buy_tokens({value: web3.utils.toWei("50", "ether"), from:accounts[3]})
         await token.approve(rapidriveInstance.address, web3.utils.toWei("50", "ether"), {from:accounts[3]})
         let actual_money = parseInt(await token.balanceOf(accounts[3]))
-        await rapidriveInstance.use_ramp('rusot', {from:accounts[3]})
+        await rapidriveInstance.use_route('Route 23', {from:accounts[3]})
         
         try {
-            await rapidriveInstance.use_ramp('campana', {from:accounts[3]})
+            await rapidriveInstance.use_route('Route 23', {from:accounts[3]})
         } catch (e) {
             console.log(e.data.stack)
         }
+
+        await rapidriveInstance.pay_route({from:accounts[3]})
+
+        await rapidriveInstance.use_route('Route 23', {from:accounts[3]})
 
         try {
-            await rapidriveInstance.use_ramp('rusot', {from:accounts[3]})
+            await rapidriveInstance.use_route('Route 23', {from:accounts[3]})
         } catch (e) {
             console.log(e.data.stack)
         }
 
-        await rapidriveInstance.pay_ramp({from:accounts[3]})
-
-        await rapidriveInstance.use_ramp('campana', {from:accounts[3]})
-
-        try {
-            await rapidriveInstance.use_ramp('rusot', {from:accounts[3]})
-        } catch (e) {
-            console.log(e.data.stack)
-        }
-
-        await rapidriveInstance.pay_ramp({from:accounts[3]})
+        await rapidriveInstance.pay_route({from:accounts[3]})
 
         let latest_money = parseInt(await token.balanceOf(accounts[3]))
 

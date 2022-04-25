@@ -12,11 +12,6 @@
           "internalType": "string",
           "name": "location",
           "type": "string"
-        },
-        {
-          "internalType": "uint256",
-          "name": "price",
-          "type": "uint256"
         }
       ],
       "name": "create_ramp",
@@ -30,9 +25,37 @@
           "internalType": "string",
           "name": "name",
           "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "entry",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "exit",
+          "type": "string"
+        },
+        {
+          "internalType": "uint256",
+          "name": "price",
+          "type": "uint256"
         }
       ],
-      "name": "use_ramp",
+      "name": "create_route",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "route_name",
+          "type": "string"
+        }
+      ],
+      "name": "use_route",
       "outputs": [],
       "stateMutability": "nonpayable",
       "type": "function"
@@ -52,13 +75,13 @@
     },
     {
       "inputs": [],
-      "name": "pay_ramp",
+      "name": "pay_route",
       "outputs": [],
       "stateMutability": "nonpayable",
       "type": "function"
     }
   ],
-  "metadata": "{\"compiler\":{\"version\":\"0.8.11+commit.d7f03943\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[],\"name\":\"check_allowance\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"name\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"location\",\"type\":\"string\"},{\"internalType\":\"uint256\",\"name\":\"price\",\"type\":\"uint256\"}],\"name\":\"create_ramp\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"pay_ramp\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"name\",\"type\":\"string\"}],\"name\":\"use_ramp\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"author\":\"Shacker4\",\"details\":\"This functions are for test if the interface is the correct.\",\"kind\":\"dev\",\"methods\":{\"check_allowance()\":{\"returns\":{\"_0\":\"if the user has enough RPD TOKEN to use highway\"}},\"create_ramp(string,string,uint256)\":{\"params\":{\"location\":\"of the ramp which will be created\",\"name\":\"of the ramp which will be created\",\"price\":\"of the ramp which will be created\"}},\"use_ramp(string)\":{\"params\":{\"name\":\"of the ramp to use\"}}},\"title\":\"RapiDrive highway simulator\",\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{\"check_allowance()\":{\"notice\":\"Check allowance from user\"},\"create_ramp(string,string,uint256)\":{\"notice\":\"Calculate the cost of a determinate ramp\"},\"pay_ramp()\":{\"notice\":\"function to pay ramps after calculate cost and check if the driver has 10 rpd tokens.\"},\"use_ramp(string)\":{\"notice\":\"Check allowance from user\"}},\"version\":1}},\"settings\":{\"compilationTarget\":{\"project:/contracts/rpd_interface.sol\":\"IRapiDrive\"},\"evmVersion\":\"london\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"project:/contracts/rpd_interface.sol\":{\"keccak256\":\"0x61a814fbe492adce97fa19947fee81282f1c58a0e90cf5f18e9abef859240c5e\",\"license\":\"NONE\",\"urls\":[\"bzz-raw://ce645bae8d8d4cb321397f68bdd623e3fb015354adce6a8709c35d460fbec923\",\"dweb:/ipfs/Qmbpo9gmFhotXF7ZKAMhQwx5gW92j1oihBvgH1VoGC3i69\"]}},\"version\":1}",
+  "metadata": "{\"compiler\":{\"version\":\"0.8.11+commit.d7f03943\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[],\"name\":\"check_allowance\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"name\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"location\",\"type\":\"string\"}],\"name\":\"create_ramp\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"name\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"entry\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"exit\",\"type\":\"string\"},{\"internalType\":\"uint256\",\"name\":\"price\",\"type\":\"uint256\"}],\"name\":\"create_route\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"pay_route\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"route_name\",\"type\":\"string\"}],\"name\":\"use_route\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"author\":\"Shacker4\",\"details\":\"This functions are for test if the interface is the correct.\",\"kind\":\"dev\",\"methods\":{\"check_allowance()\":{\"returns\":{\"_0\":\"if the user has enough RPD TOKEN to use highway\"}},\"create_ramp(string,string)\":{\"params\":{\"location\":\"of the ramp which will be created\",\"name\":\"of the ramp which will be created\"}},\"create_route(string,string,string,uint256)\":{\"params\":{\"entry\":\"name of the ramp which will be paired\",\"exit\":\"name of the ramp which will be paired\",\"name\":\"of the route which will be created\",\"price\":\"of the route which will be created\"}},\"use_route(string)\":{\"params\":{\"route_name\":\"name of the route to use\"}}},\"title\":\"RapiDrive highway simulator\",\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{\"check_allowance()\":{\"notice\":\"Check allowance from user\"},\"create_ramp(string,string)\":{\"notice\":\"Calculate the cost of a determinate ramp\"},\"create_route(string,string,string,uint256)\":{\"notice\":\"create a route between two ramps\"},\"pay_route()\":{\"notice\":\"function to pay route after calculate cost and check if the driver has 10 rpd tokens.\"},\"use_route(string)\":{\"notice\":\"Check allowance from user\"}},\"version\":1}},\"settings\":{\"compilationTarget\":{\"project:/contracts/rpd_interface.sol\":\"IRapiDrive\"},\"evmVersion\":\"london\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"project:/contracts/rpd_interface.sol\":{\"keccak256\":\"0xf18b897f112ec2bf9d1c37872f3580b4a5a7c57a60ec019a21fd78fc84c46513\",\"license\":\"NONE\",\"urls\":[\"bzz-raw://141a86bdf2d323af8e1be86ab24d38c061bdf14c5e2f68210e3f337d3b0eda94\",\"dweb:/ipfs/QmPcb9fjUmKPhmdfeRKdxvjeCz8rzDhbjzu7ayjuFE7bzz\"]}},\"version\":1}",
   "bytecode": "0x",
   "deployedBytecode": "0x",
   "immutableReferences": {},
@@ -66,21 +89,21 @@
   "deployedGeneratedSources": [],
   "sourceMap": "",
   "deployedSourceMap": "",
-  "source": "// SPDX-License-Identifier: NONE\r\n\r\npragma solidity ^ 0.8.11;\r\n\r\n/// @title RapiDrive highway simulator\r\n/// @author Shacker4\r\n/// @dev This functions are for test if the interface is the correct.\r\n\r\ninterface IRapiDrive {\r\n\r\n    /// @notice Calculate the cost of a determinate ramp\r\n    /// @param name of the ramp which will be created\r\n    /// @param location of the ramp which will be created\r\n    /// @param price of the ramp which will be created\r\n    function create_ramp(string memory name, string memory location, uint price) external;\r\n\r\n    /// @notice Check allowance from user\r\n    /// @param name of the ramp to use\r\n    function use_ramp(string memory name) external;\r\n\r\n    /// @notice Check allowance from user\r\n    /// @return if the user has enough RPD TOKEN to use highway\r\n    function check_allowance() external view returns(bool);\r\n\r\n    /// @notice function to pay ramps after calculate cost and check if the driver has 10 rpd tokens.\r\n    function pay_ramp() external;\r\n\r\n}",
+  "source": "// SPDX-License-Identifier: NONE\r\n\r\npragma solidity ^ 0.8.11;\r\n\r\n/// @title RapiDrive highway simulator\r\n/// @author Shacker4\r\n/// @dev This functions are for test if the interface is the correct.\r\n\r\ninterface IRapiDrive {\r\n\r\n    /// @notice Calculate the cost of a determinate ramp\r\n    /// @param name of the ramp which will be created\r\n    /// @param location of the ramp which will be created\r\n    function create_ramp(string memory name, string memory location) external;\r\n\r\n    /// @notice create a route between two ramps\r\n    /// @param name of the route which will be created\r\n    /// @param entry name of the ramp which will be paired\r\n    /// @param exit name of the ramp which will be paired\r\n    /// @param price of the route which will be created\r\n    function create_route(string memory name, string memory entry, string memory exit, uint price) external;\r\n\r\n    /// @notice Check allowance from user\r\n    /// @param route_name name of the route to use\r\n    function use_route(string memory route_name) external;\r\n\r\n    /// @notice Check allowance from user\r\n    /// @return if the user has enough RPD TOKEN to use highway\r\n    function check_allowance() external view returns(bool);\r\n\r\n    /// @notice function to pay route after calculate cost and check if the driver has 10 rpd tokens.\r\n    function pay_route() external;\r\n\r\n}",
   "sourcePath": "C:\\Users\\Pavon\\Desktop\\shacke4\\contracts\\rpd_interface.sol",
   "ast": {
     "absolutePath": "project:/contracts/rpd_interface.sol",
     "exportedSymbols": {
       "IRapiDrive": [
-        1241
+        1387
       ]
     },
-    "id": 1242,
+    "id": 1388,
     "license": "NONE",
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 1213,
+        "id": 1349,
         "literals": [
           "solidity",
           "^",
@@ -97,15 +120,15 @@
         "contractDependencies": [],
         "contractKind": "interface",
         "documentation": {
-          "id": 1214,
+          "id": 1350,
           "nodeType": "StructuredDocumentation",
           "src": "65:133:9",
           "text": "@title RapiDrive highway simulator\n @author Shacker4\n @dev This functions are for test if the interface is the correct."
         },
         "fullyImplemented": false,
-        "id": 1241,
+        "id": 1387,
         "linearizedBaseContracts": [
-          1241
+          1387
         ],
         "name": "IRapiDrive",
         "nameLocation": "210:10:9",
@@ -113,32 +136,32 @@
         "nodes": [
           {
             "documentation": {
-              "id": 1215,
+              "id": 1351,
               "nodeType": "StructuredDocumentation",
-              "src": "230:222:9",
-              "text": "@notice Calculate the cost of a determinate ramp\n @param name of the ramp which will be created\n @param location of the ramp which will be created\n @param price of the ramp which will be created"
+              "src": "230:166:9",
+              "text": "@notice Calculate the cost of a determinate ramp\n @param name of the ramp which will be created\n @param location of the ramp which will be created"
             },
-            "functionSelector": "b1263b7f",
-            "id": 1224,
+            "functionSelector": "ed8b56c0",
+            "id": 1358,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "create_ramp",
-            "nameLocation": "467:11:9",
+            "nameLocation": "411:11:9",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 1222,
+              "id": 1356,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1217,
+                  "id": 1353,
                   "mutability": "mutable",
                   "name": "name",
-                  "nameLocation": "493:4:9",
+                  "nameLocation": "437:4:9",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1224,
-                  "src": "479:18:9",
+                  "scope": 1358,
+                  "src": "423:18:9",
                   "stateVariable": false,
                   "storageLocation": "memory",
                   "typeDescriptions": {
@@ -146,10 +169,10 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 1216,
+                    "id": 1352,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
-                    "src": "479:6:9",
+                    "src": "423:6:9",
                     "typeDescriptions": {
                       "typeIdentifier": "t_string_storage_ptr",
                       "typeString": "string"
@@ -159,13 +182,13 @@
                 },
                 {
                   "constant": false,
-                  "id": 1219,
+                  "id": 1355,
                   "mutability": "mutable",
                   "name": "location",
-                  "nameLocation": "513:8:9",
+                  "nameLocation": "457:8:9",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1224,
-                  "src": "499:22:9",
+                  "scope": 1358,
+                  "src": "443:22:9",
                   "stateVariable": false,
                   "storageLocation": "memory",
                   "typeDescriptions": {
@@ -173,10 +196,71 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 1218,
+                    "id": 1354,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
-                    "src": "499:6:9",
+                    "src": "443:6:9",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "422:44:9"
+            },
+            "returnParameters": {
+              "id": 1357,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "475:0:9"
+            },
+            "scope": 1387,
+            "src": "402:74:9",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "documentation": {
+              "id": 1359,
+              "nodeType": "StructuredDocumentation",
+              "src": "484:276:9",
+              "text": "@notice create a route between two ramps\n @param name of the route which will be created\n @param entry name of the ramp which will be paired\n @param exit name of the ramp which will be paired\n @param price of the route which will be created"
+            },
+            "functionSelector": "56ada059",
+            "id": 1370,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "create_route",
+            "nameLocation": "775:12:9",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 1368,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1361,
+                  "mutability": "mutable",
+                  "name": "name",
+                  "nameLocation": "802:4:9",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1370,
+                  "src": "788:18:9",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 1360,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "788:6:9",
                     "typeDescriptions": {
                       "typeIdentifier": "t_string_storage_ptr",
                       "typeString": "string"
@@ -186,13 +270,67 @@
                 },
                 {
                   "constant": false,
-                  "id": 1221,
+                  "id": 1363,
+                  "mutability": "mutable",
+                  "name": "entry",
+                  "nameLocation": "822:5:9",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1370,
+                  "src": "808:19:9",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 1362,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "808:6:9",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 1365,
+                  "mutability": "mutable",
+                  "name": "exit",
+                  "nameLocation": "843:4:9",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1370,
+                  "src": "829:18:9",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 1364,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "829:6:9",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 1367,
                   "mutability": "mutable",
                   "name": "price",
-                  "nameLocation": "528:5:9",
+                  "nameLocation": "854:5:9",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1224,
-                  "src": "523:10:9",
+                  "scope": 1370,
+                  "src": "849:10:9",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -200,10 +338,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 1220,
+                    "id": 1366,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
-                    "src": "523:4:9",
+                    "src": "849:4:9",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -212,48 +350,48 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "478:56:9"
+              "src": "787:73:9"
             },
             "returnParameters": {
-              "id": 1223,
+              "id": 1369,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "543:0:9"
+              "src": "869:0:9"
             },
-            "scope": 1241,
-            "src": "458:86:9",
+            "scope": 1387,
+            "src": "766:104:9",
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "external"
           },
           {
             "documentation": {
-              "id": 1225,
+              "id": 1371,
               "nodeType": "StructuredDocumentation",
-              "src": "552:77:9",
-              "text": "@notice Check allowance from user\n @param name of the ramp to use"
+              "src": "878:89:9",
+              "text": "@notice Check allowance from user\n @param route_name name of the route to use"
             },
-            "functionSelector": "663868aa",
-            "id": 1230,
+            "functionSelector": "56071eb9",
+            "id": 1376,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
-            "name": "use_ramp",
-            "nameLocation": "644:8:9",
+            "name": "use_route",
+            "nameLocation": "982:9:9",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 1228,
+              "id": 1374,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1227,
+                  "id": 1373,
                   "mutability": "mutable",
-                  "name": "name",
-                  "nameLocation": "667:4:9",
+                  "name": "route_name",
+                  "nameLocation": "1006:10:9",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1230,
-                  "src": "653:18:9",
+                  "scope": 1376,
+                  "src": "992:24:9",
                   "stateVariable": false,
                   "storageLocation": "memory",
                   "typeDescriptions": {
@@ -261,10 +399,10 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 1226,
+                    "id": 1372,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
-                    "src": "653:6:9",
+                    "src": "992:6:9",
                     "typeDescriptions": {
                       "typeIdentifier": "t_string_storage_ptr",
                       "typeString": "string"
@@ -273,54 +411,54 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "652:20:9"
+              "src": "991:26:9"
             },
             "returnParameters": {
-              "id": 1229,
+              "id": 1375,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "681:0:9"
+              "src": "1026:0:9"
             },
-            "scope": 1241,
-            "src": "635:47:9",
+            "scope": 1387,
+            "src": "973:54:9",
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "external"
           },
           {
             "documentation": {
-              "id": 1231,
+              "id": 1377,
               "nodeType": "StructuredDocumentation",
-              "src": "690:102:9",
+              "src": "1035:102:9",
               "text": "@notice Check allowance from user\n @return if the user has enough RPD TOKEN to use highway"
             },
             "functionSelector": "4ddd15d5",
-            "id": 1236,
+            "id": 1382,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "check_allowance",
-            "nameLocation": "807:15:9",
+            "nameLocation": "1152:15:9",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 1232,
+              "id": 1378,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "822:2:9"
+              "src": "1167:2:9"
             },
             "returnParameters": {
-              "id": 1235,
+              "id": 1381,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1234,
+                  "id": 1380,
                   "mutability": "mutable",
                   "name": "",
                   "nameLocation": "-1:-1:-1",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1236,
-                  "src": "847:4:9",
+                  "scope": 1382,
+                  "src": "1192:4:9",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -328,10 +466,10 @@
                     "typeString": "bool"
                   },
                   "typeName": {
-                    "id": 1233,
+                    "id": 1379,
                     "name": "bool",
                     "nodeType": "ElementaryTypeName",
-                    "src": "847:4:9",
+                    "src": "1192:4:9",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bool",
                       "typeString": "bool"
@@ -340,68 +478,68 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "846:6:9"
+              "src": "1191:6:9"
             },
-            "scope": 1241,
-            "src": "798:55:9",
+            "scope": 1387,
+            "src": "1143:55:9",
             "stateMutability": "view",
             "virtual": false,
             "visibility": "external"
           },
           {
             "documentation": {
-              "id": 1237,
+              "id": 1383,
               "nodeType": "StructuredDocumentation",
-              "src": "861:97:9",
-              "text": "@notice function to pay ramps after calculate cost and check if the driver has 10 rpd tokens."
+              "src": "1206:97:9",
+              "text": "@notice function to pay route after calculate cost and check if the driver has 10 rpd tokens."
             },
-            "functionSelector": "cd5a3942",
-            "id": 1240,
+            "functionSelector": "18d00a1a",
+            "id": 1386,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
-            "name": "pay_ramp",
-            "nameLocation": "973:8:9",
+            "name": "pay_route",
+            "nameLocation": "1318:9:9",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 1238,
+              "id": 1384,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "981:2:9"
+              "src": "1327:2:9"
             },
             "returnParameters": {
-              "id": 1239,
+              "id": 1385,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "992:0:9"
+              "src": "1338:0:9"
             },
-            "scope": 1241,
-            "src": "964:29:9",
+            "scope": 1387,
+            "src": "1309:30:9",
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "external"
           }
         ],
-        "scope": 1242,
-        "src": "200:798:9",
+        "scope": 1388,
+        "src": "200:1144:9",
         "usedErrors": []
       }
     ],
-    "src": "36:962:9"
+    "src": "36:1308:9"
   },
   "legacyAST": {
     "absolutePath": "project:/contracts/rpd_interface.sol",
     "exportedSymbols": {
       "IRapiDrive": [
-        1241
+        1387
       ]
     },
-    "id": 1242,
+    "id": 1388,
     "license": "NONE",
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 1213,
+        "id": 1349,
         "literals": [
           "solidity",
           "^",
@@ -418,15 +556,15 @@
         "contractDependencies": [],
         "contractKind": "interface",
         "documentation": {
-          "id": 1214,
+          "id": 1350,
           "nodeType": "StructuredDocumentation",
           "src": "65:133:9",
           "text": "@title RapiDrive highway simulator\n @author Shacker4\n @dev This functions are for test if the interface is the correct."
         },
         "fullyImplemented": false,
-        "id": 1241,
+        "id": 1387,
         "linearizedBaseContracts": [
-          1241
+          1387
         ],
         "name": "IRapiDrive",
         "nameLocation": "210:10:9",
@@ -434,32 +572,32 @@
         "nodes": [
           {
             "documentation": {
-              "id": 1215,
+              "id": 1351,
               "nodeType": "StructuredDocumentation",
-              "src": "230:222:9",
-              "text": "@notice Calculate the cost of a determinate ramp\n @param name of the ramp which will be created\n @param location of the ramp which will be created\n @param price of the ramp which will be created"
+              "src": "230:166:9",
+              "text": "@notice Calculate the cost of a determinate ramp\n @param name of the ramp which will be created\n @param location of the ramp which will be created"
             },
-            "functionSelector": "b1263b7f",
-            "id": 1224,
+            "functionSelector": "ed8b56c0",
+            "id": 1358,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "create_ramp",
-            "nameLocation": "467:11:9",
+            "nameLocation": "411:11:9",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 1222,
+              "id": 1356,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1217,
+                  "id": 1353,
                   "mutability": "mutable",
                   "name": "name",
-                  "nameLocation": "493:4:9",
+                  "nameLocation": "437:4:9",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1224,
-                  "src": "479:18:9",
+                  "scope": 1358,
+                  "src": "423:18:9",
                   "stateVariable": false,
                   "storageLocation": "memory",
                   "typeDescriptions": {
@@ -467,10 +605,10 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 1216,
+                    "id": 1352,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
-                    "src": "479:6:9",
+                    "src": "423:6:9",
                     "typeDescriptions": {
                       "typeIdentifier": "t_string_storage_ptr",
                       "typeString": "string"
@@ -480,13 +618,13 @@
                 },
                 {
                   "constant": false,
-                  "id": 1219,
+                  "id": 1355,
                   "mutability": "mutable",
                   "name": "location",
-                  "nameLocation": "513:8:9",
+                  "nameLocation": "457:8:9",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1224,
-                  "src": "499:22:9",
+                  "scope": 1358,
+                  "src": "443:22:9",
                   "stateVariable": false,
                   "storageLocation": "memory",
                   "typeDescriptions": {
@@ -494,10 +632,71 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 1218,
+                    "id": 1354,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
-                    "src": "499:6:9",
+                    "src": "443:6:9",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "422:44:9"
+            },
+            "returnParameters": {
+              "id": 1357,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "475:0:9"
+            },
+            "scope": 1387,
+            "src": "402:74:9",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "documentation": {
+              "id": 1359,
+              "nodeType": "StructuredDocumentation",
+              "src": "484:276:9",
+              "text": "@notice create a route between two ramps\n @param name of the route which will be created\n @param entry name of the ramp which will be paired\n @param exit name of the ramp which will be paired\n @param price of the route which will be created"
+            },
+            "functionSelector": "56ada059",
+            "id": 1370,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "create_route",
+            "nameLocation": "775:12:9",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 1368,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1361,
+                  "mutability": "mutable",
+                  "name": "name",
+                  "nameLocation": "802:4:9",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1370,
+                  "src": "788:18:9",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 1360,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "788:6:9",
                     "typeDescriptions": {
                       "typeIdentifier": "t_string_storage_ptr",
                       "typeString": "string"
@@ -507,13 +706,67 @@
                 },
                 {
                   "constant": false,
-                  "id": 1221,
+                  "id": 1363,
+                  "mutability": "mutable",
+                  "name": "entry",
+                  "nameLocation": "822:5:9",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1370,
+                  "src": "808:19:9",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 1362,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "808:6:9",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 1365,
+                  "mutability": "mutable",
+                  "name": "exit",
+                  "nameLocation": "843:4:9",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1370,
+                  "src": "829:18:9",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 1364,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "829:6:9",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 1367,
                   "mutability": "mutable",
                   "name": "price",
-                  "nameLocation": "528:5:9",
+                  "nameLocation": "854:5:9",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1224,
-                  "src": "523:10:9",
+                  "scope": 1370,
+                  "src": "849:10:9",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -521,10 +774,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 1220,
+                    "id": 1366,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
-                    "src": "523:4:9",
+                    "src": "849:4:9",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -533,48 +786,48 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "478:56:9"
+              "src": "787:73:9"
             },
             "returnParameters": {
-              "id": 1223,
+              "id": 1369,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "543:0:9"
+              "src": "869:0:9"
             },
-            "scope": 1241,
-            "src": "458:86:9",
+            "scope": 1387,
+            "src": "766:104:9",
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "external"
           },
           {
             "documentation": {
-              "id": 1225,
+              "id": 1371,
               "nodeType": "StructuredDocumentation",
-              "src": "552:77:9",
-              "text": "@notice Check allowance from user\n @param name of the ramp to use"
+              "src": "878:89:9",
+              "text": "@notice Check allowance from user\n @param route_name name of the route to use"
             },
-            "functionSelector": "663868aa",
-            "id": 1230,
+            "functionSelector": "56071eb9",
+            "id": 1376,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
-            "name": "use_ramp",
-            "nameLocation": "644:8:9",
+            "name": "use_route",
+            "nameLocation": "982:9:9",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 1228,
+              "id": 1374,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1227,
+                  "id": 1373,
                   "mutability": "mutable",
-                  "name": "name",
-                  "nameLocation": "667:4:9",
+                  "name": "route_name",
+                  "nameLocation": "1006:10:9",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1230,
-                  "src": "653:18:9",
+                  "scope": 1376,
+                  "src": "992:24:9",
                   "stateVariable": false,
                   "storageLocation": "memory",
                   "typeDescriptions": {
@@ -582,10 +835,10 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 1226,
+                    "id": 1372,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
-                    "src": "653:6:9",
+                    "src": "992:6:9",
                     "typeDescriptions": {
                       "typeIdentifier": "t_string_storage_ptr",
                       "typeString": "string"
@@ -594,54 +847,54 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "652:20:9"
+              "src": "991:26:9"
             },
             "returnParameters": {
-              "id": 1229,
+              "id": 1375,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "681:0:9"
+              "src": "1026:0:9"
             },
-            "scope": 1241,
-            "src": "635:47:9",
+            "scope": 1387,
+            "src": "973:54:9",
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "external"
           },
           {
             "documentation": {
-              "id": 1231,
+              "id": 1377,
               "nodeType": "StructuredDocumentation",
-              "src": "690:102:9",
+              "src": "1035:102:9",
               "text": "@notice Check allowance from user\n @return if the user has enough RPD TOKEN to use highway"
             },
             "functionSelector": "4ddd15d5",
-            "id": 1236,
+            "id": 1382,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "check_allowance",
-            "nameLocation": "807:15:9",
+            "nameLocation": "1152:15:9",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 1232,
+              "id": 1378,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "822:2:9"
+              "src": "1167:2:9"
             },
             "returnParameters": {
-              "id": 1235,
+              "id": 1381,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1234,
+                  "id": 1380,
                   "mutability": "mutable",
                   "name": "",
                   "nameLocation": "-1:-1:-1",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1236,
-                  "src": "847:4:9",
+                  "scope": 1382,
+                  "src": "1192:4:9",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -649,10 +902,10 @@
                     "typeString": "bool"
                   },
                   "typeName": {
-                    "id": 1233,
+                    "id": 1379,
                     "name": "bool",
                     "nodeType": "ElementaryTypeName",
-                    "src": "847:4:9",
+                    "src": "1192:4:9",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bool",
                       "typeString": "bool"
@@ -661,54 +914,54 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "846:6:9"
+              "src": "1191:6:9"
             },
-            "scope": 1241,
-            "src": "798:55:9",
+            "scope": 1387,
+            "src": "1143:55:9",
             "stateMutability": "view",
             "virtual": false,
             "visibility": "external"
           },
           {
             "documentation": {
-              "id": 1237,
+              "id": 1383,
               "nodeType": "StructuredDocumentation",
-              "src": "861:97:9",
-              "text": "@notice function to pay ramps after calculate cost and check if the driver has 10 rpd tokens."
+              "src": "1206:97:9",
+              "text": "@notice function to pay route after calculate cost and check if the driver has 10 rpd tokens."
             },
-            "functionSelector": "cd5a3942",
-            "id": 1240,
+            "functionSelector": "18d00a1a",
+            "id": 1386,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
-            "name": "pay_ramp",
-            "nameLocation": "973:8:9",
+            "name": "pay_route",
+            "nameLocation": "1318:9:9",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 1238,
+              "id": 1384,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "981:2:9"
+              "src": "1327:2:9"
             },
             "returnParameters": {
-              "id": 1239,
+              "id": 1385,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "992:0:9"
+              "src": "1338:0:9"
             },
-            "scope": 1241,
-            "src": "964:29:9",
+            "scope": 1387,
+            "src": "1309:30:9",
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "external"
           }
         ],
-        "scope": 1242,
-        "src": "200:798:9",
+        "scope": 1388,
+        "src": "200:1144:9",
         "usedErrors": []
       }
     ],
-    "src": "36:962:9"
+    "src": "36:1308:9"
   },
   "compiler": {
     "name": "solc",
@@ -716,7 +969,7 @@
   },
   "networks": {},
   "schemaVersion": "3.4.4",
-  "updatedAt": "2022-04-25T01:03:36.014Z",
+  "updatedAt": "2022-04-25T15:53:14.122Z",
   "devdoc": {
     "author": "Shacker4",
     "details": "This functions are for test if the interface is the correct.",
@@ -727,16 +980,23 @@
           "_0": "if the user has enough RPD TOKEN to use highway"
         }
       },
-      "create_ramp(string,string,uint256)": {
+      "create_ramp(string,string)": {
         "params": {
           "location": "of the ramp which will be created",
-          "name": "of the ramp which will be created",
-          "price": "of the ramp which will be created"
+          "name": "of the ramp which will be created"
         }
       },
-      "use_ramp(string)": {
+      "create_route(string,string,string,uint256)": {
         "params": {
-          "name": "of the ramp to use"
+          "entry": "name of the ramp which will be paired",
+          "exit": "name of the ramp which will be paired",
+          "name": "of the route which will be created",
+          "price": "of the route which will be created"
+        }
+      },
+      "use_route(string)": {
+        "params": {
+          "route_name": "name of the route to use"
         }
       }
     },
@@ -749,13 +1009,16 @@
       "check_allowance()": {
         "notice": "Check allowance from user"
       },
-      "create_ramp(string,string,uint256)": {
+      "create_ramp(string,string)": {
         "notice": "Calculate the cost of a determinate ramp"
       },
-      "pay_ramp()": {
-        "notice": "function to pay ramps after calculate cost and check if the driver has 10 rpd tokens."
+      "create_route(string,string,string,uint256)": {
+        "notice": "create a route between two ramps"
       },
-      "use_ramp(string)": {
+      "pay_route()": {
+        "notice": "function to pay route after calculate cost and check if the driver has 10 rpd tokens."
+      },
+      "use_route(string)": {
         "notice": "Check allowance from user"
       }
     },
