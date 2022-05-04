@@ -1,4 +1,4 @@
-//SPDX-License-Identifier: UNLICENSED
+// SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.8.0;
 
 import "@openzeppelin/contracts/access/Ownable.sol";
@@ -74,7 +74,7 @@ contract DeBay is Ownable, Pausable, IDeBay {
     mapping(bytes32 => auction) public auctions;
     mapping(address => uint) public userfunds;
 
-    function startAuction(string calldata name, string calldata imgUrl, string calldata description, uint256 floor, uint256 deadline) external whenNotPaused {
+    function startAuction(string calldata name, string calldata imgUrl, string calldata description, uint256 floor, uint256 deadline) external override whenNotPaused {
         
         // creating auctionId via keccak256 like previous tasks
         (bytes32 auctionIdGenerator) = getAuctionId(msg.sender, block.timestamp + deadline * 1 hours,name, imgUrl, description);
@@ -105,13 +105,13 @@ contract DeBay is Ownable, Pausable, IDeBay {
     }
 
     // bid via msg.value
-    function bid(bytes32 auctionId) external whenNotPaused payable  {
+    function bid(bytes32 auctionId) external override whenNotPaused payable  {
         require(msg.value > 0);
         bid_algorithm(msg.value, auctionId);
     }
 
     // bid via funds inside contract    
-    function bid(bytes32 auctionId, uint256 amount) external whenNotPaused  {
+    function bid(bytes32 auctionId, uint256 amount) external override whenNotPaused  {
         require(amount > 0 && amount <= userfunds[msg.sender]);
         bid_algorithm(amount, auctionId);
         // after we need to update funds inside contract of the user , otherwise it will be exploitable
@@ -119,7 +119,7 @@ contract DeBay is Ownable, Pausable, IDeBay {
     }
 
     // settle an auction it requires deadline is passed
-    function settle(bytes32 auctionId) external whenNotPaused  {
+    function settle(bytes32 auctionId) external override whenNotPaused  {
         require(auctions[auctionId].deadline <= block.timestamp && auctions[auctionId].finished == false, "Auction deadline was not reached.");
         auctions[auctionId].finished = true;
         // setting auction winner
@@ -127,12 +127,12 @@ contract DeBay is Ownable, Pausable, IDeBay {
     }
     
     // deposit internal funds to user 
-    function deposit() external whenNotPaused payable  {
+    function deposit() external override whenNotPaused payable  {
         userfunds[msg.sender] += msg.value;
     }
     
     // function to withdraw inside money of an user
-    function withdraw() external whenNotPaused {
+    function withdraw() external override whenNotPaused {
         require(userfunds[msg.sender] > 0, "You don't have saved funds.");
         uint amount = userfunds[msg.sender];
         userfunds[msg.sender] = 0;
